@@ -1,0 +1,54 @@
+﻿<% include ../partials/header.ejs %>
+
+<div class="container">
+
+    <div class="page-header">
+        <h1>Sign In <small>Log In for awesome here</small></h1>
+    </div>
+
+    <h4><strong>Login</strong></h4>
+    <br>
+
+    <form id="frm_login" method="POST">
+        <div class="form-group">
+            <input id="email" type="email" name="email" placeholder="Email">
+        </div>
+        <div class="form-group">
+            <input id="password" type="password" name="password" placeholder="Password">
+        </div>
+        <input type="submit" value="Sign In" class="btn btn-primary">
+    </form>
+
+</div>
+
+
+<script>
+
+    $(document).ready(function(){
+
+        $('#frm_login').on('submit', function(e) {
+            e.preventDefault();
+            var data = $("#frm_login :input").serializeArray();
+
+            loading.show();
+            deffered = $.post("/api/v0/login", data)
+            deffered.done(function(data) {
+                loading.hide()
+                document.location.href = '/dashboard'
+            });
+
+            deffered.error(function (data){
+                loading.hide()
+                clientflash.flash('danger','Failed to login.')
+                console.log(data.responseText)
+            })
+
+        })
+
+    })
+
+</script>
+
+
+<% include ../partials/footer.ejs %>
+

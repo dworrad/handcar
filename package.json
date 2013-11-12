@@ -1,0 +1,47 @@
+{
+  "name": "employeelife",
+  "version": "0.0.2",
+  "engines": {
+    "node": "0.10.1",
+    "npm":  "1.2.15"
+  },
+  "private": true,
+  "scripts": {
+    "start": "lcm server",
+    "test": "grunt test"
+  },
+  "dependencies": {
+    "locomotive": "~0.3.1",
+    "express": "~3.0.0",
+    "connect-powered-by": "~0.1.0",
+    "ejs": "",
+    "consolidate": "~0.3.1",
+    "less-middleware": "~0.1.6",
+    "passport": "~0.1.12",
+    "passport-local": "~0.1.6",
+    "bcrypt": "~0.7.2",
+    "mongoose": "~3.6.11",
+    "locomotive-mongoose": "~0.1.0",
+    "requireindex": "~0.1.8",
+    "winston": "~0.6.2",
+    "connect-flash": "",
+    "underscore": "",
+    "csv": "",
+    "mailer": "",
+    "connect-mongo":"",
+    "cron":"",
+    "ua-parser-js": "",
+    "request":"",
+    "bitly":"",
+    "nodetime":"",
+    "crypto":"",
+    "performance-now": "",
+    "moment":""
+  },
+  "devDependencies": {
+    "grunt": "~0.3.15",
+    "should": "~1.1.0",
+    "vows": "~0.6.4",
+    "grunt-vows": "~0.2.0"
+  }
+}

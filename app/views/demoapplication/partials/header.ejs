@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Demo Application</title>
+
+    <link rel="stylesheet" href="/static/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/bootstrap/dist/css/bootstrap-theme.min.css">
+
+    <script src="/static/js/jquery.js"></script>
+    <script src="/static/js/moment.min.js"></script>
+    <script src="/static/js/clientflashes.js"></script>
+    <script src="/static/js/loading.js"></script>
+    <script src="/static/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <script>
+        <% if ('undefined' !== typeof flash){ %>
+        var flashes = <%- JSON.stringify(flash) %>
+        <% }else{ %>
+        var flashes = {}
+        <% } %>
+
+        <% if ('undefined' !== typeof user){ %>
+        var user = <%- JSON.stringify(user) %>
+        <% }else{ %>
+        var user = {}
+        <% } %>
+
+        $.ajaxSetup({ cache: false });
+    </script>
+
+</head>
+
+<body>
+
+<div class="navbar navbar-default">
+    <div class="navbar-header">
+        <a href="#" class="navbar-brand">Demo Application</a>
+    </div>
+    <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+        <ul class="nav navbar-nav">
+            <li>
+                <a href="#">Getting started</a>
+            </li>
+            <li>
+                <a href="#">CSS</a>
+            </li>
+            <li>
+                <a href="#">Components</a>
+            </li>
+            <li>
+                <a href="#">JavaScript</a>
+            </li>
+            <li>
+                <a href="#">Customize</a>
+            </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+                <a href="#">About</a>
+            </li>
+        </ul>
+    </nav>
+</div>
+
+<div id="loading" style="position:absolute;top:0;left:0;width:100%;height:100%;z-index:10000;background-color: rgba(0, 0, 0, 0.2); display:none;">
+    <img style="position:fixed; top:50%; left:50%; margin-top:-48px; margin-left:-48px;" src="/static/img/AjaxLoader.gif"></img>
+</div>
+
+<div class="container">
+    <div class="row-fluid" id="flashmessages">
+    </div>
+</div>

@@ -1,0 +1,66 @@
+<% include ../partials/header.ejs %>
+
+<div class="container">
+
+    <div class="page-header">
+        <h1>Register Account <small>Sign up for awesome here</small></h1>
+    </div>
+
+    <h4><strong>Register</strong></h4>
+    <br>
+
+    <form id="frm_register" method="POST">
+        <div class="form-group">
+            <input id="email" type="email" name="email" placeholder="Email">
+        </div>
+        <div class="form-group">
+            <input id="password" type="password" name="password" placeholder="Password">
+        </div>
+        <input type="submit" value="Register" class="btn btn-primary">
+    </form>
+
+</div>
+
+
+
+<script>
+
+    $(document).ready(function(){
+
+        $('#frm_register').on('submit', function(e) {
+            e.preventDefault();
+            var data = $("#frm_register :input").serializeArray();
+
+            if($("#password").val().length >= 6){
+                loading.show();
+                deffered = $.post("/api/v0/register", data)
+                deffered.done(function(data) {
+                    loading.hide()
+                    if(data == 'true'){
+                        clientflash.flash('success','Successfully created account. Please verify your email.')
+                    }else{
+                        clientflash.flash('danger','Failed to create account.')
+                    }
+                });
+
+                deffered.error(function (data){
+                    loading.hide()
+                    clientflash.flash('danger','Failed to create account.')
+                    console.log(data.responseText)
+                })
+            }else{
+                clientflash.flash('warning','Password must be greater than 6 characters in length!.')
+            }
+
+
+        })
+
+    })
+
+</script>
+
+
+<% include ../partials/footer.ejs %>
+
+
+
