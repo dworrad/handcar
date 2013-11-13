@@ -36,7 +36,8 @@
     "nodetime":"",
     "crypto":"",
     "performance-now": "",
-    "moment":""
+    "moment":"",
+    "mustache" : ""
   },
   "devDependencies": {
     "grunt": "~0.3.15",

@@ -11,6 +11,17 @@
     <h3>Had Enough? </h3>
     <a href="auth/logout">Logout</a>
 
+    <a href="javascript:testRedirectFlash()">Test Redirect Flash</a>
+
 </div>
+
+<script>
+
+    function testRedirectFlash(){
+        clientflash.addflash('success',"Test Flash")
+        window.location.href = "/dashboard";
+    }
+
+</script>
 
 <% include ../partials/footer.ejs %>

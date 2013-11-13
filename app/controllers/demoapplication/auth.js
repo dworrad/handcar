@@ -5,8 +5,8 @@ var passport = require('passport');
 
 //Api
 var api_path = __dirname + '/../api/' + conf[environment].API_Version
-var auth_api = require(api_path + '/auth.js')
-var user_api = require(api_path + '/users.js')
+var models_path = __dirname + '/../../../app/models';
+require(models_path + '/user.js');
 
 //Controller
 var AuthController = new Controller();
@@ -15,6 +15,22 @@ AuthController.register = function () {
     var controller = this;
     controller.flash = controller.req.flash();
     controller.render();
+
+};
+
+AuthController.activate = function () {
+    var controller = this;
+
+    var activationkey = controller.req.params.activationkey;
+
+    User.findOne({"activationkey": activationkey}, function(err, user){
+        if(!err){
+            user.activate(function(result){console.log(result)});
+        }
+    })
+
+    controller.req.flash("success","Your account is now active, please login.")
+    controller.redirect("/auth/login");
 
 };
 

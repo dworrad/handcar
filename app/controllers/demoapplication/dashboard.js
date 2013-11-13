@@ -6,13 +6,19 @@ var passport = require('passport');
 
 var api_path = __dirname + '/../api/' + conf[environment].API_Version
 
+var models_path = __dirname + '/../../../app/models';
+require(models_path + '/user.js');
+
+
 var DashboardController = new Controller();
 
 DashboardController.index = function () {
     var controller = this;
 
-        controller.flash = controller.req.flash()
-        controller.render();
+    console.log(controller.req.user)
+
+    controller.flash = controller.req.flash()
+    controller.render();
 
 };
 

@@ -59,6 +59,15 @@ AuthController.forgotpassword = function(){
                 if(err){
                     controller.res.send('false')
                 }else{
+
+                    var data = {
+                        passwordresetkey:   user.passwordresetkey
+                    }
+
+                    sendemail(user.email, templates.PasswordReset.Subject, data, templates.PasswordReset.File, function(result){
+                        console.log(result);
+                    })
+
                     controller.res.send('true')
                 }
             })

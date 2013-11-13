@@ -15,10 +15,11 @@ var userSchema = new mongoose.Schema({
   hash: String,
   organisation: String,
   phone: String,
-  name: {
+  profile: {
       first: String,
       last: String
   },
+  country: String,
   passwordresetkey : String,
   activationkey : String,
   active      : Boolean
@@ -33,6 +34,15 @@ userSchema.statics.registerUser = function(email, password, cb) {
         user.activationkey = activationkey
 
         user.save(function (err) {
+
+            var data = {
+                activationkey:  user.activationkey
+            }
+
+            sendemail(user.email, templates.Activate.Subject, data, templates.Activate.File, function(result){
+                console.log(result);
+            })
+
             cb(err, user)
         })
 

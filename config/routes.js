@@ -18,12 +18,12 @@ module.exports = function routes() {
     this.namespace('demoapplication', function(){
         this.match('/dashboard', 'dashboard#index');
 
-        this.match('/auth/resetpassword/:resetkey', 'auth#resetpassword');
-        this.match('/auth/forgotpassword', 'auth#forgotpassword');
         this.match('/auth/register', 'auth#register');
+        this.match('/auth/activate/:activationkey', 'auth#activate');
         this.match('/auth/login', 'auth#login');
         this.match('/auth/logout', 'auth#logout');
-        this.match('/auth/activate/:activationkey', 'auth#activate');
+        this.match('/auth/forgotpassword', 'auth#forgotpassword');
+        this.match('/auth/resetpassword/:resetkey', 'auth#resetpassword');
     })
 
     //API Global Namespace
@@ -36,7 +36,6 @@ module.exports = function routes() {
             this.match('resetpassword', "auth#resetpassword", { via: ['post'] })
             this.match('login', "auth#login", { via: ['post'] })
             this.match('register', "auth#register", { via: ['post'] })
-            this.match('githubhook', "github#hook", { via: ['post'] })
         })
     })
 

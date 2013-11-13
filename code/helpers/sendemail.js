@@ -6,9 +6,12 @@ var email = require('mailer')
 //data: data for the template
 //template: path to a template
 //cb: callback containing an error if failed or null if success.
-exports = sendemail = function(to, application, subject, data, template, cb){
+exports = sendemail = function(to, subject, data, template, cb){
     console.log("sendemail....")
     if(to.indexOf("user") != 0){
+
+        data.dns = conf[environment].DNS
+        data.application_name = conf.ApplicationName
 
         var settings = {
             domain: "smtp.sendgrid.net",
@@ -21,7 +24,7 @@ exports = sendemail = function(to, application, subject, data, template, cb){
             from : conf[environment].Email.From,
             subject : subject,
             data: data,
-            template: "./templates/email/" + template + ".mustache"
+            template: "./templates/email/" + template
             //template: template
 
         };

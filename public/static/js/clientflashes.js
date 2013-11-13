@@ -6,6 +6,11 @@ var clientflash = {
     show : function(){
 
         $("#flashmessages").empty()
+
+        var cachedFlashes = locache.get("flashes")
+
+        $.extend(flashes, cachedFlashes);
+
         $.each(flashes, function(type,message){
 
             $.each(message, function(index, messageitem){
@@ -17,14 +22,17 @@ var clientflash = {
         })
 
         flashes = {};
+        locache.flush();
 
         $(document).ready(function() {
+
 
             $("#flashmessages .alert").animate({
                 height: "48px",
                 opacity: "100",
                 paddingTop: "15px",
-                paddingBottom: "15px"
+                paddingBottom: "15px",
+                marginBottom:"3px"
             }, 1000);
 
             setTimeout(function(){
@@ -33,7 +41,8 @@ var clientflash = {
                     height: "0px",
                     opacity: "0",
                     paddingTop: "0px",
-                    paddingBottom: "0px"
+                    paddingBottom: "0px",
+                    marginBottom:"0px"
                 }, 1000,"swing",function(){});
 
             },6000)
@@ -49,6 +58,16 @@ var clientflash = {
         flashes[type].push(message)
 
         clientflash.show()
+    },
+
+    addflash : function(type, message){
+        if(flashes[type] === undefined){
+            flashes[type] = []
+        }
+
+        flashes[type].push(message)
+
+        locache.set("flashes", flashes)
     }
 
 }

@@ -7,6 +7,9 @@ var express = require('express'),
 module.exports = function() {
     var app = this;
 
+
+    //sendsms("61414143250", {}, templates.SMSTest.File, function cb(){    })
+
     if (this.version !== require('locomotive').version) {
         console.warn(util.format('version mismatch between local (%s) and global (%s) Locomotive module', require('locomotive').version, this.version));
     }
